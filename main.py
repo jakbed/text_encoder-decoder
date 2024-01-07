@@ -1,3 +1,5 @@
+from assets import logo
+
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 end = False
@@ -8,7 +10,10 @@ def encrypt(text, shift):
     for i in list_of_words:
         if i in alphabet:
             index_of_letter = alphabet.index(i) + shift
+            if shift >27:
+                shift = shift % 27
             if index_of_letter > 25:
+                
                 index_of_letter -= 26
             new_letter = alphabet[index_of_letter]
             encrypted_text += new_letter
@@ -39,6 +44,7 @@ def restart():
     os.execv(sys.executable, ['python'] + sys.argv)
 
 
+print(logo)
 
 while not end:
 
