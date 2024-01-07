@@ -9,12 +9,14 @@ def encrypt(text, shift):
     list_of_words = list(text)
     for i in list_of_words:
         if i in alphabet:
-            index_of_letter = alphabet.index(i) + shift
             if shift >27:
-                shift = shift % 27
-            if index_of_letter > 25:
-                
-                index_of_letter -= 26
+                shift = shift - (27 * int(shift / 27))
+            index_of_letter = alphabet.index(i) + shift
+            print(shift)
+
+            # if index_of_letter > 25:
+
+            #     index_of_letter -= 26
             new_letter = alphabet[index_of_letter]
             encrypted_text += new_letter
         else:
@@ -26,6 +28,8 @@ def decode(text, shift):
     list_of_words = list(text)
     for i in list_of_words:
         if i in alphabet:
+            if shift >27:
+                shift = shift - (27 * int(shift / 27))
             index_of_letter = alphabet.index(i) - shift
             new_letter = alphabet[index_of_letter]
             encrypted_text += new_letter
@@ -49,6 +53,7 @@ print(logo)
 while not end:
 
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
+    
     text = input("Type your message:\n").lower()
     shift = int(input("Type the shift number:\n"))
     if direction == 'encode':
